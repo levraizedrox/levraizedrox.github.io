@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serveur de Zedrox</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            padding-top: 20%;
+        }
+
+        .content h1 {
+            font-size: 2.5em;
+        }
+
+        .content button, .content a {
+            background-color: #9370DB;
+            border: none;
+            padding: 10px 20px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .content button:hover, .content a:hover {
+            background-color: #8A2BE2;
+        }
+
+        .content .stats {
+            margin-top: 20px;
+        }
+
+        .content .stats div {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .snow .dot {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Bienvenue sur le serveur de Zedrox !</h1>
+        <p>C'est un serveur communautaire mais aussi basé sur les jeux vidéo, etc. !</p>
+        <button onclick="window.location.href='https://votre-url-ici.com'">Go</button>
+        <a href="https://discord.com/invite/txkWDampFc">Discord</a>
+        <div class="stats">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div class="snow"></div>
+
+    <script>
+        const snowContainer = document.querySelector('.snow');
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('dot');
+            snowflake.style.width = `${Math.random() * 5 + 2}px`;
+            snowflake.style.height = snowflake.style.width;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            snowflake.style.opacity = Math.random();
+
+            snowContainer.appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, (Math.random() * 5 + 5) * 1000);
+        }
+
+        setInterval(createSnowflake, 100);
+    </script>
+</body>
+</html>
